@@ -7,6 +7,7 @@ class User {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.userId = userId;
         this.isAdmin = isAdmin;
     }
 
@@ -17,6 +18,7 @@ class User {
             email: this.email,
             address: this.address,
             phoneNumber: this.phoneNumber,
+            userId: this.userId,
             isAdmin: this.isAdmin,
         };
         return new Promise((resolve, reject) => {
