@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Barnardo's Charity Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: rgb(199, 142, 254);
+        }
+        p {
+            color: rgb(11, 70, 49);
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <div class="container">
+        <form method="POST" action="/contact">
+            <label for="help">How can we help?</label>
+            <textarea id="help" name="help" placeholder="Tell us how we can help..."></textarea>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name..">
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Email">
+
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+44...">
+
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    {{>footer}}
+</body>
+</html>
