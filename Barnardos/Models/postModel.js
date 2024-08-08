@@ -48,7 +48,7 @@ class Post {
     removePost(postId) {
     // Returns a new Promise that can either be resolved or rejected 
     return new Promise((resolve, reject) => {
-        // Calls the 'remove' function of the database
+        // Calls the 'remove' function of the database to remove post by ID
         postDB.remove({_id: postId}, function(err, result) {
             // error handling
             if (err) {

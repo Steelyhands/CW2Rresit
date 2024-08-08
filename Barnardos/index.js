@@ -26,7 +26,7 @@ const mustache = require('mustache-express');
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
-const router = require('./routes/bernardosRoutes');
+const router = require('./routes/barnardosRoutes');
 app.use('/', router);
 
 const sqlite3 = require('sqlite3').verbose();
