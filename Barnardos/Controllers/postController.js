@@ -33,6 +33,7 @@ class Post {
     }
 
     // Static method 'removePost' to remove a post based on its ID
+    //checking to see if user is admin or not
     // Only admins can remove posts
     static removePost(postId, isAdmin) {
         if (!isAdmin) {

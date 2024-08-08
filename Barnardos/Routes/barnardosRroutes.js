@@ -42,5 +42,19 @@ router.use(function (err, req, res, next) {
     res.send('Internal Server Error.');
 });
 
+
+// Route for handling form submissions to '/signup'
+router.post('/signup', (req, res) => {
+    // Access form data from req.body
+    const { userId } = req.body;
+
+    // Here you would typically validate the input data and save the new user to your database
+    // For example:
+    const user = new User(userId);
+    user.save()
+        .then(() => res.status(200).send({ message: 'User created successfully.' }))
+        .catch(err => res.status(500).send({ error: err.message }));
+    });
+
 // Export the router for use in other files
 module.exports = router;
