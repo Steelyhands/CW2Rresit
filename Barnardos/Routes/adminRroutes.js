@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('..Barnardos/controllers/userController');
 
 router.get('/createAdmin', userController.createAdminForm);
 router.post('/createAdmin', userController.createAdmin);
