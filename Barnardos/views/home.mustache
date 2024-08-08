@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" type="text/css" href="/styles.css">
     <style>
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Set the background color and text color of the body */
+        body {
+            background-color: white;
+            color: white;
         }
-        .header img {
-            height: 50px; /* Adjust as needed */
+        /* Set the background color, border color, and text color of the buttons and form controls */
+        .btn, .form-control {
+            background-color: rgb(199, 142, 254);
+            border-color: rgb(199, 142, 254);
+            color: white;
         }
-        .header .buttons {
-            display: flex;
-            gap: 10px;
+        /* Style the form */
+        .form-signin {
+            width: 100%; /* Full width */
+            max-width: 330px; /* Maximum width */
+            padding: 15px; /* Padding */
+            margin: auto; /* Center the form */
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <img src="/images/barnardoslogo.png" alt="Barnardos Logo">
-        <div class="buttons">
-            <a href="/login" class="btn btn-primary btn-lg" role="button">Log In</a>
-            <a href="/register" class="btn btn-primary btn-lg" role="button">Sign Up</a>
-        </div>
+    <div class="container">
+        <!-- Form for signing in -->
+        <form class="form-signin">
+            <!-- Heading -->
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <!-- Label and input field for the username -->
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            <!-- Label and input field for the password -->
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <!-- Sign in button -->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
     </div>
-</div>
 </body>
 </html>
+
