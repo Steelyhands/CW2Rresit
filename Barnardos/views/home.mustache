@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Link to the external CSS file -->
-    <link rel="stylesheet" type="text/css" href="/styles.css">
     <style>
         /* Set the background color and text color of the body */
         body {
@@ -10,7 +8,7 @@
             color: white;
         }
         /* Set the background color, border color, and text color of the buttons and form controls */
-        .btn, .form-control {
+        .btn {
             background-color: rgb(199, 142, 254);
             border-color: rgb(199, 142, 254);
             color: white;
@@ -22,23 +20,25 @@
             padding: 15px; /* Padding */
             margin: auto; /* Center the form */
         }
+        /* Style the container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Form for signing in -->
-        <form class="form-signin">
-            <!-- Heading -->
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <!-- Label and input field for the username -->
-            <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-            <!-- Label and input field for the password -->
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <!-- Logo image -->
+        <img src="Barnardos/public/images/barnardoslogo.png" alt="Barnardos Logo" width="520" height="500">
+        <!-- Buttons -->
+        <div class="buttons">
             <!-- Sign in button -->
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
+            <a href="/login" class="btn btn-lg btn-primary btn-block" role="button">Sign in</a>
+            <!-- Register button -->
+            <a href="/register" class="btn btn-lg btn-primary btn-block" role="button">Sign Up</a>
+        </div>
     </div>
 </body>
 </html>
