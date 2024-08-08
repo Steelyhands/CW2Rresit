@@ -1,23 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController.js');
+const userController = require('..Barnardos/controllers/userController.js'); // Assuming userController is in '../controllers/userController.js'
 
-//Show user details
-router.get('/:id', userController.showUser);
+// Route to create a user
+router.post('/create', userController.create);
 
-//Create new user form
-router.get('/createUser', userController.createUserForm);
+// Route to delete a user
+router.delete('/delete/:id', userController.delete);
 
-//Create new user
-router.post('/', userController.createUser);
-
-//Form for editing an user
-router.get('/:id/edit', userController.updateUserForm);
-
-//Update user
-router.put('/:id', userController.updateUser);
-
-//Delete user
-router.delete('/:id', userController.deleteUser);
+// Route to make a user an admin
+router.put('/makeAdmin/:id', userController.makeAdmin);
 
 module.exports = router;
