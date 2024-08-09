@@ -50,7 +50,7 @@ class User {
         if (currentUser.isAdmin) { // Assuming currentUser is the one who is currently logged in
             this.isAdmin = isAdmin;
         } else {
-            throw new Error('Only admins can update admin status.');
+            throw new Error('you do not have authorrisation to perform this action.');
         }
     }
 }
