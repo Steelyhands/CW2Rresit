@@ -4,13 +4,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 class UserDAO {
-    constructor(fullName, email, address, phoneNumber, isAdmin, userName) {
-        this.fullName = fullName;
-        this.email = email;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.isAdmin = isAdmin;
-        this.userName = userName;
+    constructor(db) {
+        this.db = db;
     }
 
     create(userName, fullName, email, phoneNumber, address, password) {
@@ -25,17 +20,19 @@ class UserDAO {
                 role: 'user'
             };
     
-            userDB.insert(newUser, function (err) 
+            this.db.insert(newUser, function (err) 
             {
                 if (err) // Catches any errors
                 { 
                     console.log("Can't insert user:", userName);
                 }
-                });
             });
+        });
     }
 
+    // Other methods for retrieving, updating, and deleting users would go here
 }
+
 const dao = new UserDAO(userDB);
 
 module.exports = dao;
