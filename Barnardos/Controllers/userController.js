@@ -1,90 +1,32 @@
-const nedb = require('gray-nedb');
-const userDB = new nedb({ filename: './db/user.db', autoload: true });
+const UserDAO = require('../Models/userModel'); 
+const userDAO = new userDAO 
 
-//creating and initialising UsaerDAO object
-class UserDAO {
-    constructor(fullName, email, address, phoneNumber, isAdmin, userName){
-        this.userName = userName;
-        this.fullName = fullName;
-        this.email = email;
-        this.address = address;
-
-        this.phoneNumber = phoneNumber;
-        this.userId = userId;
-        this.isAdmin = isAdmin;
-    }
-
+class UserController {
     // Create a new user
-    createUser() {
-        const entry = {
-            userName: this.userName,
-            fullName: this.fullName,
-            email: this.email,
-            address: this.address,
-            phoneNumber: this.phoneNumber,
-            userId: this.userId,
-            isAdmin: this.isAdmin,
-        };
-            userDB.insert(entry, function(err, newUser) {
-                if (err){ 
-                    reject(err);
-                }
-                else{ 
-                    resolve(newUser);
-                }
-            });
+    static createUser(fullName, email, address, phoneNumber, isAdmin, userName, password) {
+        const user = new UserDAO(fullName, email, address, phoneNumber, isAdmin, userName, password);
+        return user.createUser();
     }
 
     // Update an existing user
-    updateUser(userId, updatedData) {
-            userDB.update({_id: userId}, { $set: updatedData }, {}, function(err, numReplaced) {
-                if (err){
-                    console.log('Error updating user: ', err);
-                }
-                else{
-                    console.log('User updated successfully');
-                }
-            });
+    static updateUser(userId, updatedData) {
+        return UserDAO.updateUser(userId, updatedData);
     }
 
     // Remove a user
-    removeUser(userId) {
-            userDB.remove({_id: userId}, {}, function(err, numRemoved) {
-                if (err){ 
-                    reject(err);
-                }
-                else{ 
-                    resolve(numRemoved);
-                }
-            });
+    static removeUser(userId) {
+        return UserDAO.removeUser(userId);
     }
 
     // Get all users
-    getAllUsers() {
-        return new Promise((resolve, reject) => {
-            userDB.find({}, function(err, users) {
-                if (err){ reject(err);
-                }
-                else{
-                    console.log("Function returns: ", users);
-                }
-            });
-        });
+    static getAllUsers() {
+        return UserDAO.getAllUsers();
     }
 
     // Get a user by ID
-    getUserById(userId) {
-        return new Promise((resolve, reject) => {
-            userDB.findOne({_id: userId}, function(err, user) {
-                if (err){ 
-                    console.log('User not found');
-                }
-                else{
-                     resolve(user);
-                }
-            });
-        });
+    static getUserById(userId, cb) {
+        return UserDAO.getUserById(userId, cb);
     }
 }
 
-module.exports = UserDAO;
+module.exports = UserController;
