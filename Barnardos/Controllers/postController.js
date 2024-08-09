@@ -11,7 +11,7 @@ class Post {
         this.image = image;
     }
 
-    // Method 'create' to create a new post with given parameters
+    // Method 'create' to create a new post with given parameterss
     // Only admins can create posts
     create(isAdmin) {
         if (!isAdmin) {

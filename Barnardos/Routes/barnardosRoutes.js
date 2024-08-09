@@ -3,8 +3,9 @@ const express = require('express');
 // Create a new router
 const router = express.Router();
 // Import the controllers
-const controller = require('..Barnardos/controllers/barnardosController.js');
-const postController = require('..Barnardos/controllers/postController.js');
+const controller = require('../controllers/barnardosController.js');
+const postController = require('../controllers/postController.js');
+const User = require('./models/user');
 
 // Define routes for different paths
 // Route for the landing page
