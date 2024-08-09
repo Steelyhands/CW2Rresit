@@ -1,45 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        /* Set the background color and text color of the body */
-        body {
-            background-color: white;
-            color: white;
-        }
-        /* Set the background color, border color, and text color of the buttons and form controls */
-        .btn {
-            background-color: rgb(199, 142, 254);
-            border-color: rgb(199, 142, 254);
-            color: white;
-        }
-        /* Style the form */
-        .form-signin {
-            width: 100%; /* Full width */
-            max-width: 330px; /* Maximum width */
-            padding: 15px; /* Padding */
-            margin: auto; /* Center the form */
-        }
-        /* Style the container */
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
-</head>
+{{>header}}
 <body>
     <div class="container">
         <!-- Logo image -->
-        <img src="Barnardos/public/images/barnardoslogo.png" alt="Barnardos Logo" width="520" height="500">
+        <img src="Barnardos/public/images/barnardoslogo.png" alt="Barnardos Logo" class= "img-fluid" width="520" height="500">
         <!-- Buttons -->
-        <div class="buttons">
-            <!-- Sign in button -->
-            <a href="/login" class="btn btn-lg btn-primary btn-block" role="button">Sign in</a>
+        <div class="buttons text-right" style="margin-bottom: 1em;">
+            {{^user}}
             <!-- Register button -->
             <a href="/register" class="btn btn-lg btn-primary btn-block" role="button">Sign Up</a>
+            <!-- Sign in button -->
+            <a href="/login" class="btn btn-lg btn-primary btn-block" role="button">Sign in</a>
+            {{/user}}
+            {{#user}}
+            <!-- Sign out button -->
+            <a id="logout" href="/logout" class="btn btn-lg btn-primary btn-block" role="button">Sign out</a>
+            {{/user}}
         </div>
     </div>
+    {{>footer}}
 </body>
 </html>
-
