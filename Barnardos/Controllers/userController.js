@@ -79,6 +79,6 @@ exports.show_users = function (req, res) {
       });
     })
     .catch((err) => {
-      console.log("promise rejected", err);
+      console.log("unable to fetch users", err);
     });
 };

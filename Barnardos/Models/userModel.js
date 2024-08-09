@@ -11,7 +11,6 @@ class UserDAO {
         this.fullName = fullName;
         this.email = email;
         this.address = address;
-
         this.phoneNumber = phoneNumber;
         this.userId = userId;
         this.isAdmin = isAdmin;
