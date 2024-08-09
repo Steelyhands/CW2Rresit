@@ -12,7 +12,7 @@ class User {
         this.password = password;
     }
 
-    // Create a new user
+    // Create a new admin
     create() {
         const entry = {
             name: this.fullName,

@@ -43,16 +43,32 @@ class User {
     });
   }
 
-  show_user_account(req, res) {
-    res.render('user/userAccount', {
-      user: 'user',
-      post: 'post'
+  delete_user = function(req, res) {
+    const userId = req.body.userId;
+  
+    // Call the deleteUser method from your userModel to delete the user
+    userDao.deleteUser(userId, (err) => {
+        if (err) {
+            // Handle error
+            console.error("Error deleting user:", err);
+            res.status(500).send("Internal server error");
+            return;
+        }
+        // Redirect back to the user database page after deletion
+        res.redirect("/user/users");
     });
-  }
+  };
 
   show_user_update(req, res) {
     res.render('user/updateUser', {
       user: 'user'
+    });
+  }
+
+  show_user_account(req, res) {
+    res.render('user/userAccount', {
+      user: 'user',
+      post: 'post'
     });
   }
 
