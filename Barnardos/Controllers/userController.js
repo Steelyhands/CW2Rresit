@@ -1,9 +1,11 @@
 const nedb = require('gray-nedb');
 const userDB = new nedb({ filename: './db/user.db', autoload: true });
 
-class User {
-    constructor(name, email, address, phoneNumber, isAdmin){
-        this.name = name;
+//creating and initialising UsaerDAO object
+class UserDAO {
+    constructor(fullName, email, address, phoneNumber, isAdmin, userName){
+        this.userName = userName;
+        this.fullName = fullName;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -12,9 +14,10 @@ class User {
     }
 
     // Create a new user
-    create() {
+    createUser() {
         const entry = {
-            name: this.name,
+            userName: this.userName,
+            fullName: this.fullName,
             email: this.email,
             address: this.address,
             phoneNumber: this.phoneNumber,
@@ -30,7 +33,7 @@ class User {
     }
 
     // Update an existing user
-    static updateUser(userId, updatedData) {
+    updateUser(userId, updatedData) {
         return new Promise((resolve, reject) => {
             userDB.update({_id: userId}, { $set: updatedData }, {}, function(err, numReplaced) {
                 if (err) reject(err);
@@ -40,7 +43,7 @@ class User {
     }
 
     // Remove a user
-    static removeUser(userId) {
+    removeUser(userId) {
         return new Promise((resolve, reject) => {
             userDB.remove({_id: userId}, {}, function(err, numRemoved) {
                 if (err) reject(err);
@@ -50,7 +53,7 @@ class User {
     }
 
     // Get all users
-    static getAllUsers() {
+    getAllUsers() {
         return new Promise((resolve, reject) => {
             userDB.find({}, function(err, users) {
                 if (err) reject(err);
@@ -60,7 +63,7 @@ class User {
     }
 
     // Get a user by ID
-    static getUserById(userId) {
+    getUserById(userId) {
         return new Promise((resolve, reject) => {
             userDB.findOne({_id: userId}, function(err, user) {
                 if (err) reject(err);
@@ -70,4 +73,4 @@ class User {
     }
 }
 
-module.exports = User;
+module.exports = UserDAO;
