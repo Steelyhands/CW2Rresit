@@ -2,22 +2,27 @@ const nedb = require('gray-nedb');
 const userDB = new nedb({ filename: './db/user.db', autoload: true });
 
 class User {
-    constructor(name, email, address, phoneNumber, isAdmin){
+    constructor(name, email, address, phoneNumber, isAdmin, username, password){
         this.name = name;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.isAdmin = isAdmin;
+        this.username = username;
+        this.password = password;
     }
 
     // Create a new user
     create() {
         const entry = {
-            name: this.name,
+            name: this.fullName,
             email: this.email,
             address: this.address,
             phoneNumber: this.phoneNumber,
             isAdmin: this.isAdmin,
+            username: this.username,
+            password: this.password,
+
         };
         return new Promise((resolve, reject) => {
             userDB.insert(entry, function(err, newUser) {

@@ -1,21 +1,19 @@
-const UserDAO = require('../models/UserDAO'); // Update the path as needed
+const UserDAO = require('../models/UserModel'); // Update the path as needed
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // Define saltRounds
 
-exports.show_user_account = function(req, res) {
-  res.render('user/userAccount', {
-    user: 'user',
-    post: 'post'
-  });
-}
+class User {
+  constructor(name, email, address, phoneNumber, isAdmin, username, password){
+      this.name = name;
+      this.email = email;
+      this.address = address;
+      this.phoneNumber = phoneNumber;
+      this.isAdmin = isAdmin;
+      this.username = username;
+      this.password = password;
+  }
 
-exports.show_user_update = function(req, res) {
-  res.render('user/updateUser', {
-    user: 'user'
-  });
-}
-
-exports.update_user = function (req, res) {
+  update_user(req, res) {
     const fullName = req.body.fullName;
     const email = req.body.email;
     const address = req.body.address;
@@ -23,7 +21,7 @@ exports.update_user = function (req, res) {
     const isAdmin = req.body.isAdmin;
     const userName = req.body.userName;
     const password = req.body.password;
-  
+
     if (!fullName || !email || !address || !phoneNumber || !isAdmin || !userName || !password) {
       res.send(401, "Please provide all user details");
       return;
@@ -43,42 +41,21 @@ exports.update_user = function (req, res) {
             .then(() => res.json({ message: 'User updated successfully' }))
             .catch(err => res.status(500).json({ error: err.message }));
     });
-};
+  }
 
-exports.delete_user = function(req, res) {
-  const userId = req.body.userId;
-
-  UserDAO.removeUser(userId, (err) => {
-      if (err) {
-          console.error("Error deleting user:", err);
-          res.status(500).send("Internal server error");
-          return;
-      }
-      res.redirect("/user/users");
-  });
-};
-
-exports.delete_account = function(req, res) {
-  const userId = req.cookie.id;
-
-  UserDAO.removeUser(userId, (err) => {
-      if (err) {
-          console.error("Error deleting user:", err);
-          res.status(500).send("Internal server error");
-          return;
-      }
-      res.clearCookie("jwt").status(200).redirect("/");
-  });
-};
-
-exports.show_users = function (req, res) {
-  UserDAO.getAllUsers()
-    .then((list) => {
-      res.render("user/users", {
-        users: list,
-      });
-    })
-    .catch((err) => {
-      console.log("unable to fetch users", err);
+  show_user_account(req, res) {
+    res.render('user/userAccount', {
+      user: 'user',
+      post: 'post'
     });
-};
+  }
+
+  show_user_update(req, res) {
+    res.render('user/updateUser', {
+      user: 'user'
+    });
+  }
+
+}
+
+module.exports = User;
