@@ -8,6 +8,7 @@ class UserDAO {
         this.fullName = fullName;
         this.email = email;
         this.address = address;
+
         this.phoneNumber = phoneNumber;
         this.userId = userId;
         this.isAdmin = isAdmin;
@@ -24,40 +25,49 @@ class UserDAO {
             userId: this.userId,
             isAdmin: this.isAdmin,
         };
-        return new Promise((resolve, reject) => {
             userDB.insert(entry, function(err, newUser) {
-                if (err) reject(err);
-                else resolve(newUser);
+                if (err){ 
+                    reject(err);
+                }
+                else{ 
+                    resolve(newUser);
+                }
             });
-        });
     }
 
     // Update an existing user
     updateUser(userId, updatedData) {
-        return new Promise((resolve, reject) => {
             userDB.update({_id: userId}, { $set: updatedData }, {}, function(err, numReplaced) {
-                if (err) reject(err);
-                else resolve(numReplaced);
+                if (err){
+                    console.log('Error updating user: ', err);
+                }
+                else{
+                    console.log('User updated successfully');
+                }
             });
-        });
     }
 
     // Remove a user
     removeUser(userId) {
-        return new Promise((resolve, reject) => {
             userDB.remove({_id: userId}, {}, function(err, numRemoved) {
-                if (err) reject(err);
-                else resolve(numRemoved);
+                if (err){ 
+                    reject(err);
+                }
+                else{ 
+                    resolve(numRemoved);
+                }
             });
-        });
     }
 
     // Get all users
     getAllUsers() {
         return new Promise((resolve, reject) => {
             userDB.find({}, function(err, users) {
-                if (err) reject(err);
-                else resolve(users);
+                if (err){ reject(err);
+                }
+                else{
+                    console.log("Function returns: ", users);
+                }
             });
         });
     }
@@ -66,8 +76,12 @@ class UserDAO {
     getUserById(userId) {
         return new Promise((resolve, reject) => {
             userDB.findOne({_id: userId}, function(err, user) {
-                if (err) reject(err);
-                else resolve(user);
+                if (err){ 
+                    console.log('User not found');
+                }
+                else{
+                     resolve(user);
+                }
             });
         });
     }
